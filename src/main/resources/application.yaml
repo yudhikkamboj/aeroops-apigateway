@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: aircraft
+              uri: lb://AIRCRAFT
+              predicates:
+                - Path=/api/aircraft/**
+            - id: flight
+              uri: lb://FLIGHT
+              predicates:
+                - Path=/api/flights/**
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
