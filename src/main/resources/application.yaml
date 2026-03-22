@@ -10,14 +10,18 @@ spring:
         webflux:
           routes:
             - id: aircraft
-              uri: lb://AIRCRAFT
+              uri: lb://AIRCRAFT-SERVICE
               predicates:
                 - Path=/api/aircraft/**
             - id: flight
-              uri: lb://FLIGHT
+              uri: lb://FLIGHT-SERVICE
               predicates:
                 - Path=/api/flights/**
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://naming-service:8761/eureka/
 
 logging:
   level:
